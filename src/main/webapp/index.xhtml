@@ -16,7 +16,7 @@
             </h:form>
             <ul>
                 <c:forEach items="#{webBean.nodes}" var="n">
-                    <li>#{n.number} -> #{n.knows.number}</li>
+                    <li>#{n.number} -> #{n.knows[0].number}</li>
                 </c:forEach>
             </ul>
         </body>

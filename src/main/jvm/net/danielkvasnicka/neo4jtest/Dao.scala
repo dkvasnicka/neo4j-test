@@ -17,30 +17,30 @@ import collection.JavaConversions._
 @RequestScoped
 class Dao {
 
-  private var dbs: EmbeddedGraphDatabase = _
-  private var transaction: Transaction = _
+    private var dbs: EmbeddedGraphDatabase = _
+    private var transaction: Transaction = _
 
-  @PostConstruct
-  def setupDb(): Unit = {
-    dbs = new EmbeddedGraphDatabase("var/graphdb")
-    transaction = dbs.beginTx()
-  }
+    @PostConstruct
+    def setupDb(): Unit = {
+        dbs = new EmbeddedGraphDatabase("var/graphdb")
+        transaction = dbs.beginTx()
+    }
 
-  def addNode(): Unit = {
+    def addNode(): Unit = {
 
-    val node = dbs.createNode()
-    val node2 = dbs.createNode()
-    node.setProperty("number", Math.random())
-    node2.setProperty("number", Math.random())
-    node.createRelationshipTo(node2, Relationships.knows)
-  }
+        val node = dbs.createNode()
+        val node2 = dbs.createNode()
+        node.setProperty("number", Math.random())
+        node2.setProperty("number", Math.random())
+        node.createRelationshipTo(node2, Relationships.knows)
+    }
 
-  def getNodes(): Seq[Node] = dbs.getAllNodes().iterator().toSeq map (new NodeEntity(_))
+    def getNodes(): Seq[Node] = dbs.getAllNodes().iterator().toSeq map (new NodeEntity(_))
 
-  @PreDestroy
-  def close(): Unit = {
-    transaction.success()
-    transaction.finish()
-    dbs.shutdown()
-  }
+    @PreDestroy
+    def close(): Unit = {
+        transaction.success()
+        transaction.finish()
+        dbs.shutdown()
+    }
 }

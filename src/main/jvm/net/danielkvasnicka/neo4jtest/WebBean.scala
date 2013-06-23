@@ -14,14 +14,14 @@ import collection.JavaConversions._
 @ManagedBean
 class WebBean {
 
-  @Inject
-  var dao: Dao = _
+    @Inject
+    var dao: Dao = _
 
-  def getNodes(): java.util.List[Node] = {
-    dao.getNodes()
-  }
+    def getNodes(): java.util.List[Node] = {
+        dao.getNodes()
+    }
 
-  def addNode(): Unit = {
-    dao.addNode()
-  }
+    def addNode(): Unit = {
+        dao.addNode()
+    }
 }

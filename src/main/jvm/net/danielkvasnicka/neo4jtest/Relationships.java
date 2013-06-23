@@ -7,6 +7,10 @@ package net.danielkvasnicka.neo4jtest;
 import org.neo4j.graphdb.RelationshipType;
 
 /**
+ * This stays as Java for now since RelationshipType is specifically
+ * designed to be extended by java enums.
+ *
+ * TODO: this might be possible to rewrite using scala case classes
  *
  * @author daniel
  */
